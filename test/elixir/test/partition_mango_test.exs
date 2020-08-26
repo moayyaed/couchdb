@@ -502,6 +502,9 @@ defmodule PartitionMangoTest do
     create_partition_docs(db_name)
     create_index(db_name, ["value"])
 
+    # this is to test that we bypass partition_query_limit for mango
+    set_config({"query_server_config", "partition_query_limit", "1"})
+
     url = "/#{db_name}/_partition/foo/_find"
 
     resp =
